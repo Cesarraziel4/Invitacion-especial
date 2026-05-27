@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tengamos una date 🎀🏎️</title>
+    <title>¿Quieres salir conmigo? 🎀🏎️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -17,45 +17,56 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffe4e1; /* Rosa pastel */
+            /* Aquí se carga tu imagen de fondo */
+            background-image: url('fondo.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             font-family: 'Arial Rounded MT Bold', 'Helvetica', sans-serif;
             overflow: hidden;
-            /* Fondo con patrón de estrellas/puntos cute */
-            background-image: radial-gradient(#ffb6c1 20%, transparent 20%),
-                              radial-gradient(#ffb6c1 20%, transparent 20%);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
             padding: 20px;
         }
 
-        /* Contenedor principal estilo Kitty Racing Team */
+        /* Capa de fondo oscura opcional por si tu imagen es demasiado clara */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.1); /* Oscurece un 10% el fondo para resaltar la tarjeta */
+            z-index: 1;
+        }
+
+        /* Contenedor principal estilizado con alto contraste */
         .card {
-            background-color: rgba(255, 255, 255, 0.96);
+            background-color: rgba(255, 255, 255, 0.93); /* Fondo blanco con ligera transparencia */
+            backdrop-filter: blur(5px); /* Efecto difuminado moderno detrás de la tarjeta */
             padding: 40px 25px;
             border-radius: 30px;
-            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             text-align: center;
-            border: 5px dashed #ff69b4; /* Borde divertido */
+            border: 5px dashed #ff1493; /* Rosa fuerte de Hello Kitty */
             width: 100%;
-            max-width: 430px;
+            max-width: 420px;
             position: relative;
+            z-index: 2; /* Se posiciona encima del fondo */
             transition: all 0.3s ease;
         }
 
-        /* Emojis combinados: Kitty, Gym y Go Karts */
+        /* Emojis con sombra para que resalten */
         .decoraciones {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             margin-bottom: 20px;
             letter-spacing: 3px;
+            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
         }
 
+        /* Letras principales en un tono rosa fuerte de alta legibilidad */
         h1 {
-            color: #ff1493;
-            font-size: 1.7rem;
+            color: #d80073; 
+            font-size: 1.8rem;
             margin-bottom: 35px;
             line-height: 1.4;
-            font-weight: bold;
-            text-shadow: 1px 1px 0px #fff;
+            font-weight: 900;
         }
 
         .botones-container {
@@ -70,72 +81,79 @@
 
         .btn {
             padding: 14px 35px;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             user-select: none;
         }
 
+        /* Botón SÍ con contraste ultra alto */
         #btn-si {
-            background-color: #ff69b4;
+            background-color: #ff1493; /* Rosa encendido */
             color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
             transition: transform 0.2s, background-color 0.2s;
         }
 
         #btn-si:hover {
-            background-color: #ff1493;
-            transform: scale(1.15);
+            background-color: #c71585;
+            transform: scale(1.12);
         }
 
+        /* Botón NO */
         #btn-no {
-            background-color: #b0b0b0;
+            background-color: #707070; /* Gris más oscuro para que se lea perfecto */
             color: white;
             z-index: 999;
-            transition: all 0.12s ease-out;
+            transition: all 0.1s ease-out;
         }
 
-        /* Pantalla final */
+        /* Pantalla final de éxito */
         .oculto {
             display: none !important;
         }
 
         .mensaje-exito h2 {
-            color: #ff1493;
-            font-size: 2.2rem;
+            color: #d80073;
+            font-size: 2.3rem;
             margin-bottom: 15px;
+            font-weight: 900;
         }
 
-        /* Animación del Go Kart de Kitty */
+        /* Animación Kitty Go Kart */
         .kart-animation {
-            font-size: 4.5rem;
-            animation: drive 1.5s infinite linear;
+            font-size: 4.8rem;
+            animation: drive 1.2s infinite linear;
             margin-bottom: 15px;
             display: inline-block;
         }
 
         @keyframes drive {
-            0% { transform: translateX(-10px) rotate(0deg); }
-            50% { transform: translateX(10px) rotate(3deg); }
-            100% { transform: translateX(-10px) rotate(0deg); }
+            0% { transform: translateX(-8px) scale(1); }
+            50% { transform: translateX(8px) scale(1.05); }
+            100% { transform: translateX(-8px) scale(1); }
         }
 
-        @media (max-width: 360px) {
-            .card { padding: 30px 15px; }
-            h1 { font-size: 1.4rem; }
-            .btn { padding: 12px 28px; font-size: 1.1rem; }
+        /* Ajustes de optimización para pantallas de celulares pequeños */
+        @media (max-width: 375px) {
+            .card { padding: 30px 20px; }
+            h1 { font-size: 1.5rem; margin-bottom: 25px; }
+            .btn { padding: 12px 28px; font-size: 1.15rem; }
+            .decoraciones { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <audio id="musica-cita" loop prefetch>
-        <source src="https://openwhyd.org/u/53b26639c4aa029f60bfb37f/playlist/0?format=mp3" type="audio/mpeg">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> 
-        </audio>
+    <!-- Elemento de audio local para reproducir Volando Remix -->
+    <audio id="musica-cita" loop>
+        <source src="volando.mp3" type="audio/mpeg">
+    </audio>
 
+    <!-- PANTALLA 1: La Pregunta -->
     <div class="card" id="propuesta">
         <div class="decoraciones">🐱🎀🏋️‍♀️🏁🏎️</div>
         <h1>Vamos a salir este sábado<br>¿Qué dices?</h1>
@@ -146,11 +164,12 @@
         </div>
     </div>
 
+    <!-- PANTALLA 2: Éxito total -->
     <div class="card oculto" id="exito">
         <div class="kart-animation">🐱🏎️💨✨</div>
         <div class="mensaje-exito">
             <h2>¡Tenemos una cita!</h2>
-            <p style="color: #ff69b4; font-size: 1.2rem; font-weight: bold; margin-top: 10px;">
+            <p style="color: #ff1493; font-size: 1.25rem; font-weight: bold; margin-top: 10px;">
                 ¡Prepara los tenis! 🏋️‍♀️🏁<br>Nos vemos el sábado. 😉
             </p>
         </div>
@@ -163,13 +182,13 @@
         const exitoDiv = document.getElementById('exito');
         const musica = document.getElementById('musica-cita');
 
-        // Función para mover el botón "No" de forma aleatoria por la pantalla
+        // Función responsiva para mover el botón No por la pantalla
         function huirBotonNo() {
             const btnWidth = btnNo.offsetWidth;
             const btnHeight = btnNo.offsetHeight;
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
-            const padding = 25;
+            const padding = 25; // Margen para que no se pegue a las esquinas físicas del teléfono
 
             const randomX = Math.floor(Math.random() * (windowWidth - btnWidth - (padding * 2))) + padding;
             const randomY = Math.floor(Math.random() * (windowHeight - btnHeight - (padding * 2))) + padding;
@@ -179,10 +198,10 @@
             btnNo.style.top = randomY + 'px';
         }
 
-        /* Eventos de evasión */
+        /* Captura de interacciones en PC y Móvil */
         btnNo.addEventListener('mouseenter', huirBotonNo);
         btnNo.addEventListener('touchstart', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Detiene el click real en pantallas táctiles
             huirBotonNo();
         });
         btnNo.addEventListener('click', function(e) {
@@ -190,15 +209,15 @@
             huirBotonNo();
         });
 
-        /* Evento al presionar SÍ (Acción y Música) */
+        /* Acción del botón SÍ */
         btnSi.addEventListener('click', () => {
-            // 1. Intercambiar pantallas
             propuestaDiv.classList.add('oculto');
+            exitoDiv.removeProperty; // Seguridad de renderizado
             exitoDiv.classList.remove('oculto');
             
-            // 2. Reproducir música (Los navegadores modernos solo permiten reproducir audio tras una interacción como este click)
+            // Reproducción de la canción local "volando.mp3"
             musica.play().catch(error => {
-                console.log("La reproducción automática fue bloqueada o cargando: ", error);
+                console.log("Audio en espera de carga del archivo local:", error);
             });
         });
     </script>
